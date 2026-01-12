@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="page-title">Gallery</h1>
+
+<div class="scroll-gallery">
+  <img src="{{ url_for('static', filename='images/img1.jpg') }}">
+  <img src="{{ url_for('static', filename='images/img2.jpg') }}">
+  <img src="{{ url_for('static', filename='images/img3.jpg') }}">
+  <img src="{{ url_for('static', filename='images/img4.jpg') }}">
+  <img src="{{ url_for('static', filename='images/img5.jpg') }}">
+</div>
+
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+
+{% endblock %}

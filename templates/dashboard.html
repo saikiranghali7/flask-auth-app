@@ -3,8 +3,11 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<h1>Welcome, {{ user }}</h1>
-
+{% if username == 'admin' %}
+  <h1 class="animated-text">🛕 Jai Shree Ram, Admin 🙏</h1>
+{% else %}
+  <h1 class="animated-text">🙏 Jai Shree Ram {{ username }} 🙏</h1>
+{% endif %}
 <p>You are successfully logged in.</p>
 
 <a href="/logout">Logout</a>

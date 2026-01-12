@@ -4,19 +4,29 @@
     <title>{% block title %}My Website{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
+    <!-- NAVBAR -->
     <nav>
         <a href="/">Home</a>
         <a href="/about">About</a>
+        <a href="/gallery">Gallery</a>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
     </nav>
 
+    <!-- BANNER -->
+    <img src="{{ url_for('static', filename='images/banner.jpg') }}"
+         alt="Banner"
+         class="banner">
+
     <hr>
 
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
+    <!-- PAGE CONTENT -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
 </body>
 </html>

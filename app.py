@@ -78,6 +78,11 @@ def dashboard():
         return redirect("/login")
     return render_template("dashboard.html", user=session["user"])
 
+@app.route("/gallery")
+def gallery():
+    return render_template("gallery.html")
+
+
 @app.route("/logout")
 def logout():
     session.pop("user", None)
