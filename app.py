@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session,abort,url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
@@ -45,11 +45,15 @@ def login():
         user = cur.fetchone()
 
         if user and check_password_hash(user[2], password):
-            session["user"] = username
-            return redirect("/dashboard")
-        else:
-            return "Invalid username or password"   
-    return render_template("login.html")
+         session["user"] = username
+
+    # admin check
+    if username == "admin":
+        session["is_admin"] = True
+    else:
+        session["is_admin"] = False
+
+    return redirect("/dashboard")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -78,15 +82,24 @@ def dashboard():
         return redirect("/login")
     return render_template("dashboard.html", user=session["user"])
 
-@app.route("/gallery")
+@app.route('/gallery')
 def gallery():
-    return render_template("gallery.html")
+    if "user" not in session:
+        return redirect(url_for('login'))
 
+    if session.get('is_admin') != True:
+        abort(403)
 
+    return render_template('gallery.html')
 @app.route("/logout")
+
 def logout():
     session.pop("user", None)
     return redirect("/")
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template("403.html"), 403
 
 if __name__ == "__main__":
     app.run()
