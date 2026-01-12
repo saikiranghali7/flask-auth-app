@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session,abort,url_for
+from flask import Flask, render_template, request, redirect, session,url_for,abort
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
@@ -36,24 +36,29 @@ def about():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username")
+        password = request.form.get("password")
 
         conn = get_db()
         cur = conn.cursor()
-        cur.execute("SELECT * FROM users WHERE username=?", (username,))
+        cur.execute("SELECT * FROM users WHERE username = ?", (username,))
         user = cur.fetchone()
+        conn.close()
 
         if user and check_password_hash(user[2], password):
-         session["user"] = username
+            session["user"] = username
 
-    # admin check
-    if username == "admin":
-        session["is_admin"] = True
-    else:
-        session["is_admin"] = False
+            # ADMIN CHECK
+            if username == "admin":
+                session["is_admin"] = True
+            else:
+                session["is_admin"] = False
 
-    return redirect("/dashboard")
+            return redirect("/dashboard")
+
+        return "Invalid username or password"
+
+    return render_template("login.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -102,4 +107,4 @@ def forbidden(e):
     return render_template("403.html"), 403
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
