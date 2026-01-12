@@ -2,13 +2,13 @@
 <html>
 <head>
     <title>{% block title %}My Website{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav>
+    <nav class="navbar">
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/gallery">Gallery</a>
