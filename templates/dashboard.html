@@ -4,10 +4,14 @@
 
 {% block content %}
 {% if username == 'admin' %}
-  <h1 class="animated-text">🛕 Jai Shree Ram, Admin 🙏</h1>
+  <h1 class="animated-text">WELL COME, Admin</h1>
 {% else %}
-  <h1 class="animated-text">🙏 Jai Shree Ram {{ username }} 🙏</h1>
+  <h1 class="animated-text">WELL COME, {{ username }}</h1>
 {% endif %}
+<body style="background-image: url('/static/images/img123.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;"></body>
 <p>You are successfully logged in.</p>
 
 <a href="/logout">Logout</a>
