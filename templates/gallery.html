@@ -1,15 +1,34 @@
 {% extends "base.html" %}
-{% block content %}
 
-<h1 class="page-title">Admin Gallery</h1>
+{% block content %}
+<h1 class="page-title">Admin Media Gallery</h1>
 
 <div class="scroll-gallery">
-  <img src="{{ url_for('static', filename='images/img1.jpg') }}">
-  <img src="{{ url_for('static', filename='images/img2.jpg') }}">
-  <img src="{{ url_for('static', filename='images/img3.jpg') }}">
-  <img src="{{ url_for('static', filename='images/img4.jpg') }}">
+
+  <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img1.jpg') }}" class="media">
+
+  <!-- VIDEO -->
+ <video width="600" controls>
+    <source src="{{ url_for('static', filename='videos/Video1.mp4') }}" type="video/mp4">
+</video>
+
+  <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img2.jpg') }}" class="media">
+
+  <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img123.jpg') }}" class="media">
+
+  <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img4.jpg') }}" class="media">
+
+   <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img5.jpg') }}" class="media">
+
+   <!-- IMAGE -->
+  <img src="{{ url_for('static', filename='images/img6.jpg') }}" class="media">
+
 </div>
 
 <script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
-
 {% endblock %}

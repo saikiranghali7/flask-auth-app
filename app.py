@@ -49,7 +49,7 @@ def login():
             session["user"] = username
 
             # ADMIN CHECK
-            if username == "admin":
+            if username == "admin" or username == "Bhavan" or username == "Meghana":
                 session["is_admin"] = True
             else:
                 session["is_admin"] = False
